@@ -81,7 +81,7 @@ export const ContactSection = () => {
                       <Input
                         placeholder="John Doe"
                         {...field}
-                        className="bg-white/50 focus:ring-accent"
+                        className="bg-white/50 dark:bg-black/20 focus:ring-accent"
                       />
                     </FormControl>
                     <FormMessage />
@@ -98,7 +98,7 @@ export const ContactSection = () => {
                       <Input
                         placeholder="john@example.com"
                         {...field}
-                        className="bg-white/50 focus:ring-accent"
+                        className="bg-white/50 dark:bg-black/20 focus:ring-accent"
                       />
                     </FormControl>
                     <FormMessage />
@@ -114,7 +114,7 @@ export const ContactSection = () => {
                     <FormControl>
                       <Textarea
                         placeholder="Your message..."
-                        className="min-h-[150px] bg-white/50 focus:ring-accent resize-none"
+                        className="min-h-[150px] bg-white/50 dark:bg-black/20 focus:ring-accent resize-none"
                         {...field}
                       />
                     </FormControl>
@@ -129,11 +129,16 @@ export const ContactSection = () => {
               >
                 {isSuccess ? (
                   <span className="flex items-center gap-2 animate-fade-in">
-                    <CheckCircle2 className="w-5 h-5" /> Sent
+                    <CheckCircle2 className="w-5 h-5" />{' '}
+                    {language === 'en' ? 'Sent' : 'Enviado'}
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    {isSubmitting ? 'Sending...' : contact.send[language]}
+                    {isSubmitting
+                      ? language === 'en'
+                        ? 'Sending...'
+                        : 'Enviando...'
+                      : contact.send[language]}
                     {!isSubmitting && <Send className="w-4 h-4" />}
                   </span>
                 )}

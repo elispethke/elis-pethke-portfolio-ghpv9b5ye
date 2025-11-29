@@ -30,7 +30,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           />
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <span className="text-white font-medium flex items-center gap-2">
-              View Details <ArrowRight className="w-4 h-4" />
+              {language === 'en' ? 'View Details' : 'Ver Detalhes'}{' '}
+              <ArrowRight className="w-4 h-4" />
             </span>
           </div>
           {/* Fallback Text Overlay */}

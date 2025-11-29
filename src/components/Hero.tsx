@@ -46,7 +46,7 @@ export const Hero = () => {
             size="lg"
             variant="outline"
             className="rounded-full px-8 text-lg border-2 hover:bg-secondary hover:scale-105 transition-all duration-300"
-            onClick={() => window.open('/resume.pdf', '_blank')}
+            onClick={() => window.open('/resume-en.pdf', '_blank')}
           >
             {hero.cta.resume[language]}
           </Button>

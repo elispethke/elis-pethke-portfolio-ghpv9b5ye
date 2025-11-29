@@ -16,6 +16,21 @@ export type Project = {
   type: 'web' | 'ios' | 'react-native'
 }
 
+export type Experience = {
+  id: string
+  role: { en: string; pt: string }
+  company: string
+  period: { en: string; pt: string }
+  description: { en: string[]; pt: string[] }
+}
+
+export type Education = {
+  id: string
+  degree: { en: string; pt: string }
+  institution: string
+  year: string
+}
+
 export const content = {
   hero: {
     title: 'Elis Pethke',
@@ -124,6 +139,75 @@ export const content = {
       },
     },
   ] as Project[],
+  experience: [
+    {
+      id: 'exp-1',
+      role: {
+        en: 'Senior Frontend Engineer',
+        pt: 'Engenheira Frontend Sênior',
+      },
+      company: 'Tech Corp',
+      period: { en: '2022 - Present', pt: '2022 - Presente' },
+      description: {
+        en: [
+          'Led the migration of legacy codebase to Next.js and TypeScript.',
+          'Improved site performance by 40% through code splitting and image optimization.',
+          'Mentored junior developers and established code quality standards.',
+        ],
+        pt: [
+          'Liderei a migração da base de código legada para Next.js e TypeScript.',
+          'Melhorei o desempenho do site em 40% através de code splitting e otimização de imagens.',
+          'Mentorei desenvolvedores júnior e estabeleci padrões de qualidade de código.',
+        ],
+      },
+    },
+    {
+      id: 'exp-2',
+      role: { en: 'Mobile Developer', pt: 'Desenvolvedora Mobile' },
+      company: 'App Studio',
+      period: { en: '2020 - 2022', pt: '2020 - 2022' },
+      description: {
+        en: [
+          'Developed and launched 3 native iOS apps using Swift and SwiftUI.',
+          'Collaborated with designers to implement complex animations and transitions.',
+          'Integrated RESTful APIs and implemented offline caching strategies.',
+        ],
+        pt: [
+          'Desenvolvi e lancei 3 aplicativos nativos iOS usando Swift e SwiftUI.',
+          'Colaborei com designers para implementar animações e transições complexas.',
+          'Integrei APIs RESTful e implementei estratégias de cache offline.',
+        ],
+      },
+    },
+  ] as Experience[],
+  education: [
+    {
+      id: 'edu-1',
+      degree: {
+        en: 'B.S. Computer Science',
+        pt: 'Bacharelado em Ciência da Computação',
+      },
+      institution: 'University of Technology',
+      year: '2019',
+    },
+  ] as Education[],
+  skills: {
+    frontend: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'Redux',
+      'HTML5',
+      'CSS3',
+    ],
+    mobile: ['Swift', 'SwiftUI', 'React Native', 'Expo'],
+    tools: ['Git', 'Figma', 'Jest', 'CI/CD', 'Agile'],
+    languages: {
+      en: 'English (Fluent), Portuguese (Native), German (B1)',
+      pt: 'Inglês (Fluente), Português (Nativo), Alemão (B1)',
+    },
+  },
   contact: {
     title: { en: 'Get in Touch', pt: 'Entre em Contato' },
     name: { en: 'Name', pt: 'Nome' },

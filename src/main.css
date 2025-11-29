@@ -82,6 +82,12 @@
   }
   body {
     @apply bg-background text-foreground font-body antialiased selection:bg-accent/30 selection:text-foreground;
+    background-image: linear-gradient(
+      to bottom right,
+      hsl(var(--background)),
+      hsl(var(--secondary))
+    );
+    background-attachment: fixed;
   }
   h1,
   h2,
@@ -95,7 +101,7 @@
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
+    @apply bg-white/40 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
   }
 
   .text-shadow-sm {
@@ -155,6 +161,17 @@
     }
   }
 
+  @keyframes blink {
+    0%,
+    90%,
+    100% {
+      transform: scaleY(1);
+    }
+    95% {
+      transform: scaleY(0.1);
+    }
+  }
+
   .animate-float-slow {
     animation: float-slow 8s ease-in-out infinite;
   }
@@ -165,5 +182,31 @@
 
   .animate-gradient-x {
     animation: gradient-x 15s ease infinite;
+  }
+
+  .animate-blink {
+    animation: blink 4s infinite;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 }

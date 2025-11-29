@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Menu, X, Globe } from 'lucide-react'
+import { Menu, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { useLanguage } from '@/lib/language-context'
 import { cn } from '@/lib/utils'
+import { ThemeToggle } from './ThemeToggle'
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -44,7 +45,7 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent no-print',
         isScrolled
           ? 'bg-white/80 dark:bg-background/80 backdrop-blur-md shadow-sm border-border/40 py-2'
           : 'bg-transparent py-4',
@@ -60,7 +61,7 @@ export const Header = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -90,10 +91,13 @@ export const Header = () => {
             <span>/</span>
             <span className={cn(language === 'pt' && 'font-bold')}>PT</span>
           </Button>
+
+          <ThemeToggle />
         </nav>
 
         {/* Mobile Nav */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"

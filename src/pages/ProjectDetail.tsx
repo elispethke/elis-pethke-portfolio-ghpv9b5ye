@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ExternalLink, Github, Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/carousel'
 import { content } from '@/data/content'
 import { useLanguage } from '@/lib/language-context'
+import { SEO } from '@/components/SEO'
 
 const ProjectDetail = () => {
   const { id } = useParams()
@@ -34,12 +35,19 @@ const ProjectDetail = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
+      <SEO
+        title={project.title}
+        description={project.description[language]}
+        image={project.screenshots[0]}
+      />
+
       <Button
         variant="ghost"
         className="mb-8 gap-2 hover:text-accent"
         onClick={() => navigate(-1)}
       >
-        <ArrowLeft className="w-4 h-4" /> Back to Projects
+        <ArrowLeft className="w-4 h-4" />{' '}
+        {language === 'en' ? 'Back to Projects' : 'Voltar para Projetos'}
       </Button>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -56,7 +64,7 @@ const ProjectDetail = () => {
 
           <div className="space-y-4">
             <h3 className="font-bold text-lg uppercase tracking-wider text-accent">
-              Technologies
+              {language === 'en' ? 'Technologies' : 'Tecnologias'}
             </h3>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
@@ -79,7 +87,8 @@ const ProjectDetail = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <ExternalLink className="w-4 h-4" /> Visit Live Site
+                    <ExternalLink className="w-4 h-4" />{' '}
+                    {language === 'en' ? 'Visit Live Site' : 'Visitar Site'}
                   </a>
                 </Button>
               )}
@@ -94,7 +103,10 @@ const ProjectDetail = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Github className="w-4 h-4" /> View Source Code
+                    <Github className="w-4 h-4" />{' '}
+                    {language === 'en'
+                      ? 'View Source Code'
+                      : 'Ver Código Fonte'}
                   </a>
                 </Button>
               )}
@@ -131,14 +143,18 @@ const ProjectDetail = () => {
         {/* Right Column: Content & Gallery */}
         <div className="lg:col-span-2 space-y-12">
           <div className="prose dark:prose-invert max-w-none">
-            <h3 className="text-2xl font-bold mb-4">About the Project</h3>
+            <h3 className="text-2xl font-bold mb-4">
+              {language === 'en' ? 'About the Project' : 'Sobre o Projeto'}
+            </h3>
             <p className="text-lg leading-relaxed text-muted-foreground font-body">
               {project.fullDescription[language]}
             </p>
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold">Gallery</h3>
+            <h3 className="text-2xl font-bold">
+              {language === 'en' ? 'Gallery' : 'Galeria'}
+            </h3>
             <Carousel className="w-full">
               <CarouselContent>
                 {project.screenshots.map((src, index) => (

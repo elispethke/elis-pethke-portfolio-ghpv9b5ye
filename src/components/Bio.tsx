@@ -26,13 +26,11 @@ export const Bio = () => {
 
           <div className="flex-1 space-y-6 text-center md:text-left">
             <div className="space-y-4">
-              <h2 className="text-3xl font-heading font-bold">About Me</h2>
+              <h2 className="text-3xl font-heading font-bold">
+                {language === 'en' ? 'About Me' : 'Sobre Mim'}
+              </h2>
               <p className="text-lg leading-relaxed text-muted-foreground font-body">
-                {bio.en}
-              </p>
-              <div className="h-px w-20 bg-accent/50 mx-auto md:mx-0" />
-              <p className="text-lg leading-relaxed text-muted-foreground font-body italic">
-                {bio.pt}
+                {bio[language]}
               </p>
             </div>
           </div>
