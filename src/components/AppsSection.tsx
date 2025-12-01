@@ -4,8 +4,14 @@ import { ProjectCard } from './ProjectCard'
 
 export const AppsSection = () => {
   const { language } = useLanguage()
-  const iosProjects = content.projects.filter((p) => p.type === 'ios')
-  const rnProjects = content.projects.filter((p) => p.type === 'react-native')
+  // Display up to 10 iOS projects
+  const iosProjects = content.projects
+    .filter((p) => p.type === 'ios')
+    .slice(0, 10)
+  // Display up to 5 React Native projects
+  const rnProjects = content.projects
+    .filter((p) => p.type === 'react-native')
+    .slice(0, 5)
 
   return (
     <section id="apps" className="py-24 bg-secondary/20">
@@ -28,7 +34,7 @@ export const AppsSection = () => {
               <div
                 key={project.id}
                 className="animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
+                style={{ animationDelay: `${Math.min(index * 50, 500)}ms` }}
               >
                 <ProjectCard project={project} />
               </div>
@@ -47,7 +53,7 @@ export const AppsSection = () => {
               <div
                 key={project.id}
                 className="animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
+                style={{ animationDelay: `${Math.min(index * 50, 500)}ms` }}
               >
                 <ProjectCard project={project} />
               </div>

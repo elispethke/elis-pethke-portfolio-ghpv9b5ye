@@ -4,7 +4,10 @@ import { ProjectCard } from './ProjectCard'
 
 export const ProjectsSection = () => {
   const { language } = useLanguage()
-  const webProjects = content.projects.filter((p) => p.type === 'web')
+  // Display up to 10 web projects
+  const webProjects = content.projects
+    .filter((p) => p.type === 'web')
+    .slice(0, 10)
 
   return (
     <section id="projects" className="py-24 container mx-auto px-4">
@@ -13,6 +16,11 @@ export const ProjectsSection = () => {
           {language === 'en' ? 'Web Projects' : 'Projetos Web'}
         </h2>
         <div className="w-20 h-1 bg-accent rounded-full" />
+        <p className="mt-4 text-muted-foreground">
+          {language === 'en'
+            ? 'A selection of my latest web development work.'
+            : 'Uma seleção dos meus trabalhos mais recentes de desenvolvimento web.'}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -20,7 +28,7 @@ export const ProjectsSection = () => {
           <div
             key={project.id}
             className="animate-fade-in-up"
-            style={{ animationDelay: `${index * 100}ms` }}
+            style={{ animationDelay: `${Math.min(index * 50, 500)}ms` }}
           >
             <ProjectCard project={project} />
           </div>

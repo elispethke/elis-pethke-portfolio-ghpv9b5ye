@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { useLanguage } from '@/lib/language-context'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from './ThemeToggle'
@@ -54,10 +55,22 @@ export const Header = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link
           to="/"
-          className="text-2xl font-heading font-bold tracking-tighter hover:scale-105 transition-transform duration-300"
+          className="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          Elis Pethke
+          <Avatar className="h-10 w-10 border border-accent/20 bg-secondary p-0.5">
+            <AvatarImage
+              src="https://img.usecurling.com/ppl/thumbnail?gender=female&seed=12"
+              alt="Elis Pethke"
+              className="object-cover rounded-full"
+            />
+            <AvatarFallback className="bg-secondary text-xs text-secondary-foreground">
+              EP
+            </AvatarFallback>
+          </Avatar>
+          <span className="text-xl md:text-2xl font-heading font-bold tracking-tighter">
+            Elis Pethke
+          </span>
         </Link>
 
         {/* Desktop Nav */}

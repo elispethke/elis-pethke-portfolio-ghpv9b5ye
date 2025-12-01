@@ -31,23 +31,9 @@ export type Education = {
   year: string
 }
 
-export const content = {
-  hero: {
-    title: 'Elis Pethke',
-    subheading: {
-      en: 'Frontend & Mobile Engineer — Front-end, iOS (Swift), React Native, Backend basics',
-      pt: 'Engenheira Frontend e Mobile — Front-end, iOS (Swift), React Native, conhecimentos em Backend',
-    },
-    cta: {
-      projects: { en: 'View Projects', pt: 'Ver Projetos' },
-      resume: { en: 'Download Resume', pt: 'Baixar Currículo' },
-    },
-  },
-  bio: {
-    en: "Hi — I'm Elis Pethke. I'm a Front-end and Mobile Engineer specialized in building polished web experiences and mobile apps. I work with modern front-end stacks, Swift for iOS, and React Native for cross-platform apps. I also have backend knowledge and experience integrating APIs. I build clean, maintainable code with attention to UX and performance. I’m based in Berlin and open to new opportunities.",
-    pt: 'Olá — Sou Elis Pethke. Sou Engenheira frontend e mobile especializada na criação de experiências web e apps móveis elegantes. Trabalho com stacks modernos de front-end, Swift para iOS e React Native para apps cross-platform. Tenho também conhecimentos de backend e integração de APIs. Prezo por código limpo, usabilidade e performance. Moro em Berlim e estou aberta a novas oportunidades.',
-  },
-  projects: [
+const generateProjects = () => {
+  const projects: Project[] = [
+    // Web Projects (10 items)
     {
       id: 'web-1',
       title: 'E-Commerce Dashboard',
@@ -57,8 +43,8 @@ export const content = {
         pt: 'Um painel de análise abrangente para varejistas online.',
       },
       fullDescription: {
-        en: 'This project involved creating a high-performance dashboard for e-commerce analytics. I focused on data visualization using Recharts and ensuring a responsive layout that works seamlessly on tablets and desktops. The challenge was to handle large datasets efficiently without compromising UI responsiveness.',
-        pt: 'Este projeto envolveu a criação de um painel de alto desempenho para análise de comércio eletrônico. Foquei na visualização de dados usando Recharts e em garantir um layout responsivo que funcione perfeitamente em tablets e desktops. O desafio foi lidar com grandes conjuntos de dados de forma eficiente sem comprometer a responsividade da interface.',
+        en: 'This project involved creating a high-performance dashboard for e-commerce analytics. I focused on data visualization using Recharts and ensuring a responsive layout that works seamlessly on tablets and desktops.',
+        pt: 'Este projeto envolveu a criação de um painel de alto desempenho para análise de comércio eletrônico. Foquei na visualização de dados usando Recharts e em garantir um layout responsivo.',
       },
       role: { en: 'Lead Frontend Engineer', pt: 'Engenheira Frontend Líder' },
       techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Recharts'],
@@ -66,10 +52,7 @@ export const content = {
         'https://img.usecurling.com/p/1200/800?q=dashboard%20analytics',
         'https://img.usecurling.com/p/1200/800?q=data%20charts',
       ],
-      links: {
-        live: 'https://example.com',
-        github: 'https://github.com',
-      },
+      links: { live: 'https://example.com', github: 'https://github.com' },
     },
     {
       id: 'web-2',
@@ -89,11 +72,30 @@ export const content = {
         'https://img.usecurling.com/p/1200/800?q=luxury%20house',
         'https://img.usecurling.com/p/1200/800?q=modern%20interior',
       ],
-      links: {
-        live: 'https://example.com',
-        github: 'https://github.com',
-      },
+      links: { live: 'https://example.com', github: 'https://github.com' },
     },
+    ...Array.from({ length: 8 }).map((_, i) => ({
+      id: `web-${i + 3}`,
+      title: `Web Project ${i + 3}`,
+      type: 'web' as const,
+      description: {
+        en: `A sophisticated web application solving complex problem #${i + 3}.`,
+        pt: `Uma aplicação web sofisticada resolvendo o problema complexo #${i + 3}.`,
+      },
+      fullDescription: {
+        en: 'Developed a scalable web solution with a focus on performance, accessibility, and user experience. Utilized modern frontend technologies to deliver a seamless interface.',
+        pt: 'Desenvolvi uma solução web escalável com foco em desempenho, acessibilidade e experiência do usuário. Utilizei tecnologias frontend modernas para entregar uma interface perfeita.',
+      },
+      role: { en: 'Frontend Engineer', pt: 'Engenheira Frontend' },
+      techStack: ['React', 'TypeScript', 'Tailwind CSS'],
+      screenshots: [
+        `https://img.usecurling.com/p/1200/800?q=web%20interface%20${i + 3}`,
+        `https://img.usecurling.com/p/1200/800?q=ui%20design%20${i + 3}`,
+      ],
+      links: { live: 'https://example.com', github: 'https://github.com' },
+    })),
+
+    // iOS Projects (10 items)
     {
       id: 'ios-1',
       title: 'Mindful Moments',
@@ -103,8 +105,8 @@ export const content = {
         pt: 'Um aplicativo nativo de meditação para iOS construído com SwiftUI.',
       },
       fullDescription: {
-        en: 'Mindful Moments is a native iOS application designed to help users track their meditation habits. It leverages HealthKit integration to sync mindfulness minutes and uses local notifications for daily reminders.',
-        pt: 'Mindful Moments é um aplicativo nativo para iOS projetado para ajudar os usuários a rastrear seus hábitos de meditação. Ele aproveita a integração com o HealthKit para sincronizar minutos de atenção plena e usa notificações locais para lembretes diários.',
+        en: 'Mindful Moments is a native iOS application designed to help users track their meditation habits. It leverages HealthKit integration to sync mindfulness minutes.',
+        pt: 'Mindful Moments é um aplicativo nativo para iOS projetado para ajudar os usuários a rastrear seus hábitos de meditação. Ele aproveita a integração com o HealthKit.',
       },
       role: { en: 'iOS Developer', pt: 'Desenvolvedora iOS' },
       techStack: ['Swift', 'SwiftUI', 'HealthKit'],
@@ -112,10 +114,30 @@ export const content = {
         'https://img.usecurling.com/p/600/1200?q=meditation%20app',
         'https://img.usecurling.com/p/600/1200?q=calm%20interface',
       ],
-      links: {
-        appStore: 'https://apple.com',
-      },
+      links: { appStore: 'https://apple.com' },
     },
+    ...Array.from({ length: 9 }).map((_, i) => ({
+      id: `ios-${i + 2}`,
+      title: `iOS App ${i + 2}`,
+      type: 'ios' as const,
+      description: {
+        en: `Native iOS experience focused on productivity and ease of use.`,
+        pt: `Experiência nativa iOS focada em produtividade e facilidade de uso.`,
+      },
+      fullDescription: {
+        en: 'Built entirely with Swift and SwiftUI, utilizing CoreData for local storage and implementing a custom design system consistent with iOS Human Interface Guidelines.',
+        pt: 'Construído inteiramente com Swift e SwiftUI, utilizando CoreData para armazenamento local e implementando um sistema de design personalizado consistente com as Diretrizes de Interface Humana do iOS.',
+      },
+      role: { en: 'iOS Engineer', pt: 'Engenheira iOS' },
+      techStack: ['Swift', 'SwiftUI', 'CoreData'],
+      screenshots: [
+        `https://img.usecurling.com/p/600/1200?q=ios%20app%20${i + 2}`,
+        `https://img.usecurling.com/p/600/1200?q=mobile%20screen%20${i + 2}`,
+      ],
+      links: { appStore: 'https://apple.com' },
+    })),
+
+    // React Native Projects (5 items)
     {
       id: 'rn-1',
       title: 'City Guide',
@@ -134,11 +156,75 @@ export const content = {
         'https://img.usecurling.com/p/600/1200?q=travel%20app',
         'https://img.usecurling.com/p/600/1200?q=city%20map',
       ],
-      links: {
-        testFlight: 'https://testflight.apple.com',
-      },
+      links: { testFlight: 'https://testflight.apple.com' },
     },
-  ] as Project[],
+    ...Array.from({ length: 4 }).map((_, i) => ({
+      id: `rn-${i + 2}`,
+      title: `RN App ${i + 2}`,
+      type: 'react-native' as const,
+      description: {
+        en: `Efficient cross-platform application for business management.`,
+        pt: `Aplicativo multiplataforma eficiente para gestão de negócios.`,
+      },
+      fullDescription: {
+        en: 'Leveraged React Native to deploy to both iOS and Android from a single codebase. Integrated complex animations using Reanimated and Gesture Handler.',
+        pt: 'Aproveitei o React Native para implantar no iOS e Android a partir de uma única base de código. Integrei animações complexas usando Reanimated e Gesture Handler.',
+      },
+      role: { en: 'React Native Dev', pt: 'Dev React Native' },
+      techStack: ['React Native', 'TypeScript', 'Reanimated'],
+      screenshots: [
+        `https://img.usecurling.com/p/600/1200?q=app%20interface%20${i + 2}`,
+        `https://img.usecurling.com/p/600/1200?q=mobile%20ui%20${i + 2}`,
+      ],
+      links: { testFlight: 'https://testflight.apple.com' },
+    })),
+  ]
+  return projects
+}
+
+export const content = {
+  hero: {
+    title: 'Elis Pethke',
+    subheading: {
+      en: 'Frontend & Mobile Engineer — Front-end, iOS (Swift), React Native, Backend basics',
+      pt: 'Engenheira Frontend e Mobile — Front-end, iOS (Swift), React Native, conhecimentos em Backend',
+    },
+    cta: {
+      projects: { en: 'View Projects', pt: 'Ver Projetos' },
+      resume: { en: 'Download Resume', pt: 'Baixar Currículo' },
+    },
+  },
+  bio: {
+    en: `I am Elisângela Pethke, a Front-end developer passionate about creating modern, responsive, and engaging digital experiences. Brazilian, living in Berlin, fluent in German, and highly proficient in English, I specialize in React and React Native, delivering high-quality interfaces for web and mobile applications.
+
+I started my journey in Front-end development, working as a freelancer for over 2 years, building clean, functional, and visually appealing interfaces for diverse clients using React. Over time, I expanded my skills to mobile development with React Native, as well as Swift and SwiftUI, enabling me to develop cross-platform and native iOS apps with modern architecture and seamless user experiences.
+
+With over 35 projects on GitHub, my portfolio demonstrates strong expertise in Front-end technologies, including:
+
+React & React Native: Building responsive, interactive, and high-performance applications with modern UI, authentication, API integration, carousels, and dynamic layouts.
+Swift & SwiftUI: Professional iOS apps using MVVM architecture, persistent storage, interactive charts, animations, and API connections.
+UI/UX Design: Creating elegant, intuitive, and accessible interfaces focused on smooth user experiences.
+Backend with Vapor (Swift): Developing APIs for login, registration, and database management.
+
+I am a fast learner, detail-oriented, and enjoy solving complex challenges with creative solutions. Development is not just my profession — it’s my passion. Every line of code is a chance to transform ideas into polished, functional, and impactful products.
+
+Check out my GitHub to explore 35+ projects showcasing my experience and dedication to Front-end excellence and innovative development.`,
+    pt: `Sou Elisângela Pethke, uma desenvolvedora Front-end apaixonada por criar experiências digitais modernas, responsivas e envolventes. Brasileira, morando em Berlim, fluente em alemão e com alta proficiência em inglês, sou especialista em React e React Native, entregando interfaces de alta qualidade para aplicações web e mobile.
+
+Comecei minha jornada no desenvolvimento Front-end trabalhando como freelancer por mais de 2 anos, construindo interfaces limpas, funcionais e visualmente atraentes para diversos clientes usando React. Com o tempo, expandi minhas habilidades para o desenvolvimento mobile com React Native, bem como Swift e SwiftUI, permitindo-me desenvolver aplicativos multiplataforma e nativos iOS com arquitetura moderna e experiências de usuário perfeitas.
+
+Com mais de 35 projetos no GitHub, meu portfólio demonstra forte expertise em tecnologias Front-end, incluindo:
+
+React & React Native: Construção de aplicações responsivas, interativas e de alto desempenho com UI moderna, autenticação, integração de API, carrosséis e layouts dinâmicos.
+Swift & SwiftUI: Apps iOS profissionais usando arquitetura MVVM, armazenamento persistente, gráficos interativos, animações e conexões de API.
+UI/UX Design: Criação de interfaces elegantes, intuitivas e acessíveis focadas em experiências de usuário fluidas.
+Backend com Vapor (Swift): Desenvolvimento de APIs para login, registro e gerenciamento de banco de dados.
+
+Sou uma aprendiz rápida, orientada a detalhes e gosto de resolver desafios complexos com soluções criativas. Desenvolvimento não é apenas minha profissão — é minha paixão. Cada linha de código é uma chance de transformar ideias em produtos polidos, funcionais e impactantes.
+
+Confira meu GitHub para explorar mais de 35 projetos mostrando minha experiência e dedicação à excelência em Front-end e desenvolvimento inovador.`,
+  },
+  projects: generateProjects(),
   experience: [
     {
       id: 'exp-1',
