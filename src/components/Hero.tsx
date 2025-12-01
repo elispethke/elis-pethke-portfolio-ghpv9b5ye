@@ -1,7 +1,6 @@
 import { ArrowDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ThreeDTitle } from './ThreeDTitle'
-import { LizyAvatar } from './LizyAvatar'
 import { useLanguage } from '@/lib/language-context'
 import { content } from '@/data/content'
 
@@ -24,15 +23,21 @@ export const Hero = () => {
       />
 
       <div className="container mx-auto px-4 flex flex-col items-center text-center z-10">
-        <ThreeDTitle text={hero.title} className="mb-6" />
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8 animate-fade-in-up">
+          <div className="relative group shrink-0">
+            <div className="absolute -inset-1 bg-gradient-to-tr from-primary to-accent rounded-full blur opacity-30 group-hover:opacity-60 transition duration-500" />
+            <img
+              src="/profile.png"
+              alt="Elis Pethke"
+              className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-background object-cover shadow-2xl"
+            />
+          </div>
+          <ThreeDTitle text={hero.title} className="" />
+        </div>
 
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-10 animate-fade-in-up delay-200 font-light">
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-12 animate-fade-in-up delay-200 font-light">
           {hero.subheading[language]}
         </p>
-
-        <div className="mb-12 animate-fade-in-up delay-300">
-          <LizyAvatar />
-        </div>
 
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-500">
           <Button
