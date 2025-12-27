@@ -25,11 +25,12 @@ export const Hero = () => {
       <div className="container mx-auto px-4 flex flex-col items-center text-center z-10">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8 animate-fade-in-up">
           <div className="relative group shrink-0">
-            <div className="absolute -inset-1 bg-gradient-to-tr from-primary to-accent rounded-full blur opacity-30 group-hover:opacity-60 transition duration-500" />
+            {/* Neon Background Effect */}
+            <div className="absolute -inset-4 bg-gradient-to-tr from-accent to-transparent rounded-full blur-xl opacity-75 animate-spin-slow" />
             <img
               src="/profile.png"
               alt="Elis Pethke"
-              className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-background object-cover shadow-2xl"
+              className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-background object-cover shadow-2xl z-10"
             />
           </div>
           <ThreeDTitle text={hero.title} className="" />
