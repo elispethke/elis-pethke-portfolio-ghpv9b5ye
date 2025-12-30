@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Send, CheckCircle2 } from 'lucide-react'
+import { Send, CheckCircle2, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { useToast } from '@/hooks/use-toast'
-import { useLanguage } from '@/lib/language-context'
 import { content } from '@/data/content'
 
 const formSchema = z.object({
@@ -27,7 +26,6 @@ const formSchema = z.object({
 })
 
 export const ContactSection = () => {
-  const { language } = useLanguage()
   const { contact } = content
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -50,7 +48,7 @@ export const ContactSection = () => {
       setIsSubmitting(false)
       setIsSuccess(true)
       toast({
-        title: contact.success[language],
+        title: contact.success,
         className: 'bg-green-50 border-green-200 text-green-900',
       })
       form.reset()
@@ -63,12 +61,29 @@ export const ContactSection = () => {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            {contact.title[language]}
+            {contact.title}
           </h2>
           <div className="w-20 h-1 bg-accent rounded-full mx-auto" />
         </div>
 
-        <div className="glass-panel p-8 rounded-2xl">
+        <div className="glass-panel p-8 rounded-2xl relative overflow-hidden transition-all hover:shadow-2xl hover:bg-white/60 dark:hover:bg-black/30">
+          {isSuccess && (
+            <div className="absolute inset-0 z-10 bg-background/80 flex items-center justify-center backdrop-blur-sm animate-fade-in">
+              <div className="flex flex-col items-center gap-4 text-green-600">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-green-200 rounded-full animate-ping opacity-75"></div>
+                  <CheckCircle2 className="w-16 h-16 relative z-10" />
+                </div>
+                <h3 className="text-2xl font-bold animate-fade-in-up">
+                  Thank You!
+                </h3>
+                <p className="text-foreground animate-fade-in-up delay-100">
+                  Your message has been received.
+                </p>
+              </div>
+            </div>
+          )}
+
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
@@ -76,12 +91,12 @@ export const ContactSection = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{contact.name[language]}</FormLabel>
+                    <FormLabel>{contact.name}</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="John Doe"
                         {...field}
-                        className="bg-white/50 dark:bg-black/20 focus:ring-accent"
+                        className="bg-white/50 dark:bg-black/20 focus:ring-accent transition-all duration-300 focus:scale-[1.01]"
                       />
                     </FormControl>
                     <FormMessage />
@@ -93,12 +108,12 @@ export const ContactSection = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{contact.email[language]}</FormLabel>
+                    <FormLabel>{contact.email}</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="john@example.com"
                         {...field}
-                        className="bg-white/50 dark:bg-black/20 focus:ring-accent"
+                        className="bg-white/50 dark:bg-black/20 focus:ring-accent transition-all duration-300 focus:scale-[1.01]"
                       />
                     </FormControl>
                     <FormMessage />
@@ -110,11 +125,11 @@ export const ContactSection = () => {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{contact.message[language]}</FormLabel>
+                    <FormLabel>{contact.message}</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Your message..."
-                        className="min-h-[150px] bg-white/50 dark:bg-black/20 focus:ring-accent resize-none"
+                        className="min-h-[150px] bg-white/50 dark:bg-black/20 focus:ring-accent resize-none transition-all duration-300 focus:scale-[1.01]"
                         {...field}
                       />
                     </FormControl>
@@ -124,23 +139,21 @@ export const ContactSection = () => {
               />
               <Button
                 type="submit"
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 text-lg h-12 rounded-xl transition-all duration-300"
+                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 text-lg h-12 rounded-xl transition-all duration-300 relative overflow-hidden group"
                 disabled={isSubmitting || isSuccess}
               >
-                {isSuccess ? (
-                  <span className="flex items-center gap-2 animate-fade-in">
-                    <CheckCircle2 className="w-5 h-5" />{' '}
-                    {language === 'en' ? 'Sent' : 'Enviado'}
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-2">
-                    {isSubmitting
-                      ? language === 'en'
-                        ? 'Sending...'
-                        : 'Enviando...'
-                      : contact.send[language]}
-                    {!isSubmitting && <Send className="w-4 h-4" />}
-                  </span>
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  {isSubmitting ? (
+                    'Sending...'
+                  ) : (
+                    <>
+                      {contact.send} <Send className="w-4 h-4" />
+                    </>
+                  )}
+                </span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                {isSubmitting && (
+                  <Sparkles className="absolute right-4 animate-spin" />
                 )}
               </Button>
             </form>

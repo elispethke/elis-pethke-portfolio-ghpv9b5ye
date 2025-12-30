@@ -1,15 +1,13 @@
-import { useLanguage } from '@/lib/language-context'
 import { content } from '@/data/content'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 export const Bio = () => {
-  const { language } = useLanguage()
   const { bio } = content
 
   // Split bio into paragraphs
-  const paragraphs = bio[language].split('\n\n')
+  const paragraphs = bio.split('\n\n')
 
   return (
     <section
@@ -23,15 +21,15 @@ export const Bio = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center mb-12 text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            {language === 'en' ? 'About Me' : 'Sobre Mim'}
+            About Me
           </h2>
           <div className="w-20 h-1 bg-accent rounded-full" />
         </div>
 
         <Card className="max-w-5xl mx-auto overflow-hidden border-none shadow-2xl bg-white/60 dark:bg-black/40 backdrop-blur-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-            {/* Image Side */}
-            <div className="lg:col-span-4 relative min-h-[300px] lg:min-h-full bg-secondary/30 flex items-center justify-center p-8">
+            {/* Image Side - Using Secondary Color Background as requested */}
+            <div className="lg:col-span-4 relative min-h-[300px] lg:min-h-full bg-secondary flex items-center justify-center p-8">
               <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-56 lg:h-56 xl:w-64 xl:h-64">
                 <div className="absolute inset-0 bg-accent rounded-full blur-2xl opacity-30 animate-pulse" />
                 <Avatar className="w-full h-full border-4 border-white dark:border-gray-800 shadow-xl z-10">

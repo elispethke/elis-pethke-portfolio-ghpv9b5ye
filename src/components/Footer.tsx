@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export const Footer = () => {
   return (
@@ -11,28 +12,32 @@ export const Footer = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-6">
-          <a
-            href="#"
-            className="text-muted-foreground hover:text-accent transition-colors"
-          >
-            <Github className="w-5 h-5" />
-            <span className="sr-only">GitHub</span>
-          </a>
-          <a
-            href="#"
-            className="text-muted-foreground hover:text-accent transition-colors"
-          >
-            <Linkedin className="w-5 h-5" />
-            <span className="sr-only">LinkedIn</span>
-          </a>
-          <a
-            href="mailto:contact@elispethke.com"
-            className="text-muted-foreground hover:text-accent transition-colors"
-          >
-            <Mail className="w-5 h-5" />
-            <span className="sr-only">Email</span>
-          </a>
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="icon" asChild>
+            <a
+              href="https://github.com/elispethke"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <a
+              href="https://linkedin.com/in/elispethke"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <a href="mailto:contact@elispethke.com" aria-label="Email">
+              <Mail className="w-5 h-5" />
+            </a>
+          </Button>
         </div>
       </div>
     </footer>

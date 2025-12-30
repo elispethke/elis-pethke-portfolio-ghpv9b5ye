@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Github, ExternalLink } from 'lucide-react'
+import { ArrowRight, Github, ExternalLink, Download } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -10,15 +10,12 @@ import {
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Project } from '@/data/content'
-import { useLanguage } from '@/lib/language-context'
 
 interface ProjectCardProps {
   project: Project
 }
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
-  const { language } = useLanguage()
-
   return (
     <Link to={`/project/${project.id}`} className="block group h-full">
       <Card className="h-full glass-panel border-transparent hover:border-accent/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden flex flex-col">
@@ -30,13 +27,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           />
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <span className="text-white font-medium flex items-center gap-2">
-              {language === 'en' ? 'View Details' : 'Ver Detalhes'}{' '}
-              <ArrowRight className="w-4 h-4" />
+              View Details <ArrowRight className="w-4 h-4" />
             </span>
           </div>
           {/* Fallback Text Overlay */}
           <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] p-1 text-center opacity-50">
-            Awaiting Elis' image: {project.title}
+            {project.title}
           </div>
         </div>
 
@@ -62,7 +58,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
         <CardContent className="flex-grow">
           <p className="text-muted-foreground text-sm line-clamp-3 font-body">
-            {project.description[language]}
+            {project.description}
           </p>
         </CardContent>
 
@@ -98,6 +94,23 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <Github className="w-4 h-4" /> Code
+              </a>
+            </Button>
+          )}
+          {project.links.appStore && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 px-0 hover:bg-transparent hover:text-accent"
+              asChild
+            >
+              <a
+                href={project.links.appStore}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Download className="w-4 h-4" /> App Store
               </a>
             </Button>
           )}

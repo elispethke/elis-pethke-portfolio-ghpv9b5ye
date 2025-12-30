@@ -1,23 +1,21 @@
 import { Hero } from '@/components/Hero'
+import { VideoSection } from '@/components/VideoSection'
 import { Bio } from '@/components/Bio'
-import { ProjectsSection } from '@/components/ProjectsSection'
-import { AppsSection } from '@/components/AppsSection'
+import { PortfolioGallery } from '@/components/PortfolioGallery'
 import { ContactSection } from '@/components/ContactSection'
 import { SEO } from '@/components/SEO'
-import { useLanguage } from '@/lib/language-context'
 import { content } from '@/data/content'
 
 const Index = () => {
-  const { language } = useLanguage()
   const { hero } = content
 
   return (
     <div className="flex flex-col w-full">
-      <SEO title="Home" description={hero.subheading[language]} />
+      <SEO title="Home" description={hero.subheading} />
       <Hero />
+      <VideoSection />
       <Bio />
-      <ProjectsSection />
-      <AppsSection />
+      <PortfolioGallery />
       <ContactSection />
     </div>
   )

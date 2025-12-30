@@ -11,13 +11,11 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { content } from '@/data/content'
-import { useLanguage } from '@/lib/language-context'
 import { SEO } from '@/components/SEO'
 
 const ProjectDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { language } = useLanguage()
   const project = content.projects.find((p) => p.id === id)
 
   useEffect(() => {
@@ -37,7 +35,7 @@ const ProjectDetail = () => {
     <div className="container mx-auto px-4 py-12">
       <SEO
         title={project.title}
-        description={project.description[language]}
+        description={project.description}
         image={project.screenshots[0]}
       />
 
@@ -46,8 +44,7 @@ const ProjectDetail = () => {
         className="mb-8 gap-2 hover:text-accent"
         onClick={() => navigate(-1)}
       >
-        <ArrowLeft className="w-4 h-4" />{' '}
-        {language === 'en' ? 'Back to Projects' : 'Voltar para Projetos'}
+        <ArrowLeft className="w-4 h-4" /> Back to Projects
       </Button>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -58,13 +55,13 @@ const ProjectDetail = () => {
               {project.title}
             </h1>
             <p className="text-xl text-muted-foreground font-light">
-              {project.role[language]}
+              {project.role}
             </p>
           </div>
 
           <div className="space-y-4">
             <h3 className="font-bold text-lg uppercase tracking-wider text-accent">
-              {language === 'en' ? 'Technologies' : 'Tecnologias'}
+              Technologies
             </h3>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
@@ -87,8 +84,7 @@ const ProjectDetail = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <ExternalLink className="w-4 h-4" />{' '}
-                    {language === 'en' ? 'Visit Live Site' : 'Visitar Site'}
+                    <ExternalLink className="w-4 h-4" /> Visit Live Site
                   </a>
                 </Button>
               )}
@@ -103,10 +99,7 @@ const ProjectDetail = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Github className="w-4 h-4" />{' '}
-                    {language === 'en'
-                      ? 'View Source Code'
-                      : 'Ver Código Fonte'}
+                    <Github className="w-4 h-4" /> View Source Code
                   </a>
                 </Button>
               )}
@@ -143,18 +136,14 @@ const ProjectDetail = () => {
         {/* Right Column: Content & Gallery */}
         <div className="lg:col-span-2 space-y-12">
           <div className="prose dark:prose-invert max-w-none">
-            <h3 className="text-2xl font-bold mb-4">
-              {language === 'en' ? 'About the Project' : 'Sobre o Projeto'}
-            </h3>
+            <h3 className="text-2xl font-bold mb-4">About the Project</h3>
             <p className="text-lg leading-relaxed text-muted-foreground font-body">
-              {project.fullDescription[language]}
+              {project.fullDescription}
             </p>
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold">
-              {language === 'en' ? 'Gallery' : 'Galeria'}
-            </h3>
+            <h3 className="text-2xl font-bold">Gallery</h3>
             <Carousel className="w-full">
               <CarouselContent>
                 {project.screenshots.map((src, index) => (
@@ -166,8 +155,7 @@ const ProjectDetail = () => {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-2 text-center opacity-70">
-                        Awaiting Elis' image: {project.title} - Screen{' '}
-                        {index + 1}
+                        {project.title} - Screen {index + 1}
                       </div>
                     </div>
                   </CarouselItem>

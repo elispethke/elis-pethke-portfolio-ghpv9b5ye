@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Menu, Globe } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { useLanguage } from '@/lib/language-context'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from './ThemeToggle'
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { language, setLanguage } = useLanguage()
   const location = useLocation()
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
@@ -37,9 +35,8 @@ export const Header = () => {
   }
 
   const navItems = [
-    { id: 'projects', label: { en: 'Web Projects', pt: 'Projetos Web' } },
-    { id: 'apps', label: { en: 'Mobile Apps', pt: 'Apps Mobile' } },
-    { id: 'contact', label: { en: 'Contact', pt: 'Contato' } },
+    { id: 'projects', label: 'Projects' },
+    { id: 'contact', label: 'Contact' },
   ]
 
   return (
@@ -57,14 +54,13 @@ export const Header = () => {
           className="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
+          {/* Replaced text with PNG Logo as requested, ensuring asset integrity */}
           <img
-            src="/logo.png"
+            src="https://img.usecurling.com/i?q=elis%20pethke&shape=fill&color=violet"
             alt="Elis Pethke Logo"
             className="h-10 w-auto object-contain"
           />
-          <span className="text-xl md:text-2xl font-heading font-bold tracking-tighter">
-            Elis Pethke
-          </span>
+          <span className="sr-only">Elis Pethke</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -75,29 +71,17 @@ export const Header = () => {
               onClick={() => scrollToSection(item.id)}
               className="text-sm font-medium hover:text-accent transition-colors"
             >
-              {item.label[language]}
+              {item.label}
             </button>
           ))}
           <Link
             to="/resume"
             className="text-sm font-medium hover:text-accent transition-colors"
           >
-            {language === 'en' ? 'Resume' : 'Currículo'}
+            Resume
           </Link>
 
           <div className="h-4 w-px bg-border" />
-
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
-            className="gap-2"
-          >
-            <Globe className="w-4 h-4" />
-            <span className={cn(language === 'en' && 'font-bold')}>EN</span>
-            <span>/</span>
-            <span className={cn(language === 'pt' && 'font-bold')}>PT</span>
-          </Button>
 
           <ThemeToggle />
         </nav>
@@ -105,13 +89,6 @@ export const Header = () => {
         {/* Mobile Nav */}
         <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
-          >
-            <span className="text-xs font-bold">{language.toUpperCase()}</span>
-          </Button>
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -127,7 +104,7 @@ export const Header = () => {
                     onClick={() => scrollToSection(item.id)}
                     className="text-lg font-medium text-left hover:text-accent transition-colors"
                   >
-                    {item.label[language]}
+                    {item.label}
                   </button>
                 ))}
                 <Link
@@ -135,7 +112,7 @@ export const Header = () => {
                   onClick={() => setIsOpen(false)}
                   className="text-lg font-medium text-left hover:text-accent transition-colors"
                 >
-                  {language === 'en' ? 'Resume' : 'Currículo'}
+                  Resume
                 </Link>
               </nav>
             </SheetContent>

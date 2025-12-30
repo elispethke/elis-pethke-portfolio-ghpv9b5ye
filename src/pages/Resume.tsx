@@ -1,24 +1,17 @@
 import { Download, Mail, MapPin, Globe, Linkedin, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useLanguage } from '@/lib/language-context'
 import { content } from '@/data/content'
 import { SEO } from '@/components/SEO'
 
 const Resume = () => {
-  const { language } = useLanguage()
   const { bio, experience, education, skills } = content
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
-      <SEO
-        title={language === 'en' ? 'Resume' : 'Currículo'}
-        description={bio[language].substring(0, 150)}
-      />
+      <SEO title="Resume" description={bio.substring(0, 150)} />
 
       <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-4 no-print">
-        <h1 className="text-4xl font-heading font-bold">
-          {language === 'en' ? 'Resume' : 'Currículo'}
-        </h1>
+        <h1 className="text-4xl font-heading font-bold">Resume</h1>
         <div className="flex gap-4">
           <Button
             className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90"
@@ -68,31 +61,31 @@ const Resume = () => {
         {/* Summary */}
         <section className="mb-8">
           <h3 className="text-lg font-bold uppercase tracking-wider text-accent mb-4">
-            {language === 'en' ? 'Summary' : 'Resumo'}
+            Summary
           </h3>
           <p className="text-muted-foreground leading-relaxed text-justify">
-            {bio[language]}
+            {bio}
           </p>
         </section>
 
         {/* Experience */}
         <section className="mb-8">
           <h3 className="text-lg font-bold uppercase tracking-wider text-accent mb-4">
-            {language === 'en' ? 'Experience' : 'Experiência'}
+            Experience
           </h3>
 
           <div className="space-y-6">
             {experience.map((job) => (
               <div key={job.id}>
                 <div className="flex justify-between items-baseline mb-2">
-                  <h4 className="font-bold text-lg">{job.role[language]}</h4>
+                  <h4 className="font-bold text-lg">{job.role}</h4>
                   <span className="text-sm text-muted-foreground">
-                    {job.period[language]}
+                    {job.period}
                   </span>
                 </div>
                 <p className="text-primary font-medium mb-2">{job.company}</p>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  {job.description[language].map((desc, i) => (
+                  {job.description.map((desc, i) => (
                     <li key={i}>{desc}</li>
                   ))}
                 </ul>
@@ -104,13 +97,13 @@ const Resume = () => {
         {/* Education */}
         <section className="mb-8">
           <h3 className="text-lg font-bold uppercase tracking-wider text-accent mb-4">
-            {language === 'en' ? 'Education' : 'Educação'}
+            Education
           </h3>
           <div className="space-y-4">
             {education.map((edu) => (
               <div key={edu.id}>
                 <div className="flex justify-between items-baseline mb-1">
-                  <h4 className="font-bold text-lg">{edu.degree[language]}</h4>
+                  <h4 className="font-bold text-lg">{edu.degree}</h4>
                   <span className="text-sm text-muted-foreground">
                     {edu.year}
                   </span>
@@ -124,7 +117,7 @@ const Resume = () => {
         {/* Skills */}
         <section className="mb-8">
           <h3 className="text-lg font-bold uppercase tracking-wider text-accent mb-4">
-            {language === 'en' ? 'Skills' : 'Habilidades'}
+            Skills
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -144,12 +137,8 @@ const Resume = () => {
               <p className="text-muted-foreground">{skills.tools.join(', ')}</p>
             </div>
             <div>
-              <h4 className="font-bold mb-2">
-                {language === 'en' ? 'Languages' : 'Idiomas'}
-              </h4>
-              <p className="text-muted-foreground">
-                {skills.languages[language]}
-              </p>
+              <h4 className="font-bold mb-2">Languages</h4>
+              <p className="text-muted-foreground">{skills.languages}</p>
             </div>
           </div>
         </section>

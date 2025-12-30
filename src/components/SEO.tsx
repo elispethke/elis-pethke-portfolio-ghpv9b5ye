@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useLanguage } from '@/lib/language-context'
 
 interface SEOProps {
   title: string
@@ -14,8 +13,6 @@ export const SEO = ({
   image,
   type = 'website',
 }: SEOProps) => {
-  const { language } = useLanguage()
-
   useEffect(() => {
     document.title = `${title} | Elis Pethke`
 
@@ -72,8 +69,8 @@ export const SEO = ({
     script.text = JSON.stringify(structuredData)
 
     // Language attribute
-    document.documentElement.lang = language
-  }, [title, description, image, type, language])
+    document.documentElement.lang = 'en'
+  }, [title, description, image, type])
 
   return null
 }
