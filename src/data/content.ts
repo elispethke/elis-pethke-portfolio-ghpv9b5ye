@@ -158,6 +158,10 @@ export const content = {
       resume: 'Download Resume',
     },
   },
+  presentation: {
+    title: 'Introduction',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?si=7B5gM8rD4Z9qZ1nE',
+  },
   bio: `I am Elisângela Pethke, a Front-end developer passionate about creating modern, responsive, and engaging digital experiences. Brazilian, living in Berlin, fluent in German, and highly proficient in English, I specialize in React and React Native, delivering high-quality interfaces for web and mobile applications.
 
 I started my journey in Front-end development, working as a freelancer for over 2 years, building clean, functional, and visually appealing interfaces for diverse clients using React. Over time, I expanded my skills to mobile development with React Native, as well as Swift and SwiftUI, enabling me to develop cross-platform and native iOS apps with modern architecture and seamless user experiences.
