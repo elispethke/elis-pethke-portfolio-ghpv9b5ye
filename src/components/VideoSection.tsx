@@ -1,3 +1,4 @@
+import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { content } from '@/data/content'
 
 export const VideoSection = () => {
@@ -21,21 +22,22 @@ export const VideoSection = () => {
           className="max-w-4xl mx-auto animate-fade-in-up"
           style={{ animationDelay: '200ms' }}
         >
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 dark:border-white/10 bg-black group">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 dark:border-white/10 bg-black group">
             {/* Ambient Glow */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 blur opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 blur opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
 
-            <iframe
-              width="100%"
-              height="100%"
-              src={presentation.videoUrl}
-              title={presentation.title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              className="absolute inset-0 z-10"
-            />
+            <div className="relative z-10">
+              <AspectRatio ratio={16 / 9}>
+                <iframe
+                  src={presentation.videoUrl}
+                  title={presentation.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </AspectRatio>
+            </div>
           </div>
         </div>
       </div>
