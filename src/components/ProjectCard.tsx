@@ -114,6 +114,23 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               </a>
             </Button>
           )}
+          {project.links.testFlight && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 px-0 hover:bg-transparent hover:text-accent"
+              asChild
+            >
+              <a
+                href={project.links.testFlight}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Download className="w-4 h-4" /> TestFlight
+              </a>
+            </Button>
+          )}
         </CardFooter>
       </Card>
     </Link>

@@ -160,7 +160,7 @@ export const content = {
   },
   presentation: {
     title: 'Introduction',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?si=7B5gM8rD4Z9qZ1nE',
+    videoUrl: 'https://www.youtube.com/embed/Ixp2a8EdvSM',
   },
   bio: `I am Elisângela Pethke, a Front-end developer passionate about creating modern, responsive, and engaging digital experiences. Brazilian, living in Berlin, fluent in German, and highly proficient in English, I specialize in React and React Native, delivering high-quality interfaces for web and mobile applications.
 

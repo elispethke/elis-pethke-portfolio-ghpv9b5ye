@@ -54,7 +54,6 @@ export const Header = () => {
           className="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          {/* Replaced text with PNG Logo as requested, ensuring asset integrity */}
           <img
             src="https://img.usecurling.com/i?q=elis%20pethke&shape=fill&color=violet"
             alt="Elis Pethke Logo"

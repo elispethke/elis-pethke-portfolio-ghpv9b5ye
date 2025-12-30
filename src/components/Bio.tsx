@@ -28,7 +28,7 @@ export const Bio = () => {
 
         <Card className="max-w-5xl mx-auto overflow-hidden border-none shadow-2xl bg-white/60 dark:bg-black/40 backdrop-blur-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-            {/* Image Side - Using Secondary Color Background as requested */}
+            {/* Image Side - Using Secondary Color Background */}
             <div className="lg:col-span-4 relative min-h-[300px] lg:min-h-full bg-secondary flex items-center justify-center p-8">
               <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-56 lg:h-56 xl:w-64 xl:h-64">
                 <div className="absolute inset-0 bg-accent rounded-full blur-2xl opacity-30 animate-pulse" />
